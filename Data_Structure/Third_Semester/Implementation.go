@@ -82,3 +82,46 @@ func (l2 *Lab_2) implTest(input [10]int) (start [10]int, min, index int) {
 
 	return
 }
+
+func (l3 *Lab_3) impl() {
+	originalArray := [10]int{15, 27, 3, 42, 8, 91, 33, 60, 14, 75}
+	fmt.Println("Исходный массив:", originalArray)
+	stack := NewStack()
+	fmt.Println("\nЗанесение элементов в стек:")
+	for _, element := range originalArray {
+		stack.push(element)
+	}
+	fmt.Println("\nИзвлечение элементов из стека:")
+	var extractedArray []int
+	for !stack.isEmpty() {
+		if element, ok := stack.pop(); ok {
+			extractedArray = append(extractedArray, element)
+		}
+	}
+	fmt.Println("\nМассив, извлеченный из стека:", extractedArray)
+}
+
+func (s *Stack) isEmpty() bool {
+	return s.top == -1
+}
+func (s *Stack) isFull() bool {
+	return s.top == s.capacity-1
+}
+func (s *Stack) push(element int) {
+	if s.isFull() {
+		fmt.Println("Стек переполнен!")
+		return
+	}
+	s.top++
+	s.items[s.top] = element
+	fmt.Printf("Добавлен элемент: %d\n", element)
+}
+func (s *Stack) pop() (int, bool) {
+	if s.isEmpty() {
+		fmt.Println("Стек пуст!")
+		return 0, false
+	}
+	element := s.items[s.top]
+	s.top--
+	return element, true
+}
