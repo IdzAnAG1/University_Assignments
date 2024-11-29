@@ -2,6 +2,7 @@ package Third_Semester
 
 import (
 	"fmt"
+	"math"
 	"time"
 )
 
@@ -43,6 +44,41 @@ func (l1 *Lab_1) implTest(input [10]int) (start, result [10]int) {
 
 	return
 }
-func (l2 *Lab_2) impl() {
 
+// Функция реализующая вторую лабораторную работу
+func (l2 *Lab_2) impl() (start [10]int, min, index int) {
+	var (
+		StartArr [10]int
+	)
+
+	min = math.MaxInt
+	for i := 0; i < 10; i++ {
+
+		fmt.Printf("Введите %d-ый элемент : ", i)
+		fmt.Scan(&StartArr[i])
+	}
+	start = StartArr
+
+	for i := 0; i < len(StartArr); i++ {
+		if min > StartArr[i] {
+			min = StartArr[i]
+			index = i
+		}
+	}
+
+	return
+}
+
+// Функция для теста второй лабораторной работы
+func (l2 *Lab_2) implTest(input [10]int) (start [10]int, min, index int) {
+	start = input
+
+	for i := 0; i < len(start); i++ {
+		if min > start[i] {
+			min = start[i]
+			index = i
+		}
+	}
+
+	return
 }

@@ -45,3 +45,54 @@ func Test_Lab_1_Impl(t *testing.T) {
 		})
 	}
 }
+
+func Test_Lab_2_Impl(t *testing.T) {
+	tests := []struct {
+		name        string
+		input       [10]int
+		expectedArr [10]int
+		expectedMin int
+	}{
+		{
+			name:        "Случайный тест",
+			input:       [10]int{4, 8, 9, 1, 0, 5, 7, 2, 0, 1},
+			expectedArr: [10]int{4, 8, 9, 1, 0, 5, 7, 2, 0, 1},
+			expectedMin: 0,
+		},
+		{
+			name:        "Тест с большими числами",
+			input:       [10]int{12346, 4561, 5343, 1, 1095, 467, 7, 7692, 6543, 1246},
+			expectedArr: [10]int{12346, 4561, 5343, 1, 1095, 467, 7, 7692, 6543, 1246},
+			expectedMin: 1,
+		},
+		{
+			name:        "Тест с отрицательными числами",
+			input:       [10]int{-49, -8, -9, -67, -2, -95, -7, -2, -100, -11},
+			expectedArr: [10]int{-49, -8, -9, -67, -2, -95, -7, -2, -100, -11},
+			expectedMin: -100,
+		},
+		{
+			name:        "Смешанный тест",
+			input:       [10]int{-49, 8956, -9, 67, -25, -95, -7754653, 2, 0, -1},
+			expectedArr: [10]int{-49, 8956, -9, 67, -25, -95, -7754653, 2, 0, -1},
+			expectedMin: -7754653,
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			l2 := &Lab_2{}
+
+			start, minimum, _ := l2.implTest(test.input)
+
+			if start != test.input {
+				t.Errorf("Не сходится входной массив ожидалось %v получили %v", test.input, start)
+			}
+
+			if minimum != test.expectedMin {
+				t.Errorf("Не сходится, ожидалось %v получили %v", test.expectedMin, minimum)
+			}
+
+		})
+	}
+}

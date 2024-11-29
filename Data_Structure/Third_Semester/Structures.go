@@ -13,7 +13,9 @@ func (l1 *Lab_1) Run() {
 }
 
 func (l2 *Lab_2) Run() {
-
+	start, res, i := l2.impl()
+	fmt.Println("Исходный массив", start)
+	fmt.Printf("Минимальное число в массиве %d под номером %d", res, i)
 }
 
 func (l3 *Lab_3) Run() {
